@@ -1,0 +1,36 @@
+# Please pardon me for the steps below – I know they aren't perfect, but this is just for my reference to remind 
+myself of the setup process.
+
+1. Download and install Mingw for C/C++
+2. Set Path variable
+3. Download 
+    SDL2 main: SDL2: https://github.com/libsdl-org/SDL/releases
+    SDL2_image: https://github.com/libsdl-org/SDL_image/releases
+    SDL2_mixer: https://github.com/libsdl-org/SDL_mixer/releases
+    SDL2_ttf: https://github.com/libsdl-org/SDL_ttf/releases
+4. Create a new project folder then code .
+5. create main.c then choose terminal > configure build task and choose C/C++: gcc.exe
+6. In the new project folder create src folder and then copy include and lib from SDL2 > x86_64-w64-mingw32.
+Then copy the include and lib to the new src folder.
+7. Copy the SDL2.dll from BIN into the root of new project directory.
+8. To add SDL IMage and other extensions follow these step for each :
+    ---include
+    i. Open SDL_image folder locate x86_64-w64-mingw32 then copy the SDl_image.h to the include folder of our source folder.
+    ---Lib
+    ii. now from the cmake copy the SDL2_image folder to the cmake folder in the src folder.
+    iii. copy the SDL2_image.pc to the pkconfig of the src.
+    iv. now copy the remaining files which are not folder from the lib folder to the src lib folder.
+
+    Repeat the above steps for other also.
+9. Add code to the main.c and run using the following commands 
+    ---C
+    gcc -g -c main.c -I./src/Include -L./src/lib -lmingw32 -lSDL2main -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2
+    gcc -g -o Game main.o -L./src/lib -lmingw32 -lSDL2main -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2
+    ./Game.exe
+    
+    ---C++
+    g++ -g -c main.cpp -I./src/Include -L./src/lib -lmingw32 -lSDL2main -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2
+    g++ -g -o Game main.o -L./src/lib -lmingw32 -lSDL2main -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2
+    ./Game.exe
+
+10. Alternatively you can use a batch file to skip executing 3 commands each time, refer the batch file for code.
